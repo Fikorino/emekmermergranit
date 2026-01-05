@@ -56,9 +56,15 @@
                         <label class="form-label">Google Analytics Ölçüm ID</label>
                         <input type="text" name="ga_measurement_id" class="form-control" value="<?= htmlspecialchars($settings['ga_measurement_id'] ?? '') ?>">
                     </div>
-                    <div class="col-md-12">
-                        <label class="form-label">Ads Özet Notu</label>
-                        <textarea name="ads_summary" class="form-control" rows="3"><?= htmlspecialchars($settings['ads_summary'] ?? '') ?></textarea>
+                    <div class="col-md-6">
+                        <label class="form-label">GA Property ID</label>
+                        <input type="text" name="ga_property_id" class="form-control" value="<?= htmlspecialchars($settings['ga_property_id'] ?? '') ?>">
+                        <small class="text-muted">storage/ga_credentials.json dosyasını ekleyin.</small>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Google Ads Customer ID</label>
+                        <input type="text" name="ads_customer_id" class="form-control" value="<?= htmlspecialchars($settings['ads_customer_id'] ?? '') ?>">
+                        <small class="text-muted">storage/ads_credentials.json dosyasını ekleyin.</small>
                     </div>
                     <div class="col-md-12">
                         <label class="form-label">Göre Medya Logo</label>

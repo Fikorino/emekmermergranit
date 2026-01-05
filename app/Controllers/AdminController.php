@@ -43,6 +43,11 @@ class AdminController
     public function dashboard(): void
     {
         $this->requireAuth();
+        $settings = Setting::all();
+        $gaPropertyId = $settings['ga_property_id'] ?? '';
+        $gaCredentials = __DIR__ . '/../../storage/ga_credentials.json';
+        $realtimeUsers = AnalyticsService::realtimeUsers($gaPropertyId, $gaCredentials);
+        $adsCredentials = __DIR__ . '/../../storage/ads_credentials.json';
         view('admin/dashboard', [
             'sliders' => Slider::all(),
             'categories' => Category::all(),
@@ -50,7 +55,9 @@ class AdminController
             'posts' => Post::all(),
             'faqs' => Faq::all(),
             'leads' => Lead::all(),
-            'settings' => Setting::all(),
+            'settings' => $settings,
+            'realtimeUsers' => $realtimeUsers,
+            'adsConnected' => file_exists($adsCredentials),
         ]);
     }
 
@@ -230,10 +237,12 @@ class AdminController
             return '';
         }
 
-        $allowed = ['image/jpeg', 'image/png', 'image/webp', 'image/svg+xml', 'image/x-icon', 'image/vnd.microsoft.icon'];
+        $allowed = ['image/jpeg', 'image/png', 'image/webp', 'image/svg+xml', 'image/svg', 'image/x-icon', 'image/vnd.microsoft.icon', 'image/ico', 'image/icon'];
         $finfo = new finfo(FILEINFO_MIME_TYPE);
         $mime = $finfo->file($file['tmp_name']);
-        if (!in_array($mime, $allowed, true)) {
+        $extension = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
+        $allowedExtensions = ['jpg', 'jpeg', 'png', 'webp', 'svg', 'ico'];
+        if (!in_array($mime, $allowed, true) && !in_array($extension, $allowedExtensions, true)) {
             return '';
         }
 
@@ -241,8 +250,6 @@ class AdminController
             return '';
         }
 
-        $extension = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
-        $allowedExtensions = ['jpg', 'jpeg', 'png', 'webp', 'svg', 'ico'];
         if (!in_array($extension, $allowedExtensions, true)) {
             return '';
         }

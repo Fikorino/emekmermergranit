@@ -10,6 +10,7 @@
         (function() {
             var storedTheme = localStorage.getItem('theme') || 'light';
             document.documentElement.setAttribute('data-theme', storedTheme);
+            document.body && document.body.setAttribute('data-theme', storedTheme);
         })();
     </script>
 </head>
@@ -79,6 +80,6 @@
     </div>
 </div>
 <script>
-const storedTheme = localStorage.getItem('theme') || 'light';\nif (storedTheme) {\n    document.documentElement.setAttribute('data-theme', storedTheme);\n}\n\ndocument.querySelectorAll('[data-theme-toggle]').forEach((btn) => {\n    btn.addEventListener('click', () => {\n        const current = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';\n        document.documentElement.setAttribute('data-theme', current);\n        localStorage.setItem('theme', current);\n    });\n});\n</script>
+const storedTheme = localStorage.getItem('theme') || 'light';\nif (storedTheme) {\n    document.documentElement.setAttribute('data-theme', storedTheme);\n    document.body.setAttribute('data-theme', storedTheme);\n}\n\ndocument.querySelectorAll('[data-theme-toggle]').forEach((btn) => {\n    btn.addEventListener('click', () => {\n        const current = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';\n        document.documentElement.setAttribute('data-theme', current);\n        document.body.setAttribute('data-theme', current);\n        localStorage.setItem('theme', current);\n    });\n});\n</script>
 </body>
 </html>

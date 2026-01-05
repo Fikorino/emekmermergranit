@@ -64,9 +64,9 @@ $settings = $settings ?? [];
                 <div class="card-body">
                     <h5>Analytics Özeti</h5>
                     <p class="mb-1">Ölçüm ID: <?= htmlspecialchars($settings['ga_measurement_id'] ?? 'Tanımlanmadı') ?></p>
-                    <p class="mb-1">Son 30 gün ziyaret: 18.400</p>
-                    <p class="mb-1">Form dönüşüm oranı: %4.6</p>
-                    <small class="text-muted">Gerçek veriler GA entegrasyonu ile otomatik güncellenir.</small>
+                    <p class="mb-1">GA Property ID: <?= htmlspecialchars($settings['ga_property_id'] ?? 'Tanımlanmadı') ?></p>
+                    <p class="mb-1">Anlık aktif kullanıcı: <?= $realtimeUsers === null ? 'Bağlantı bekleniyor' : (string)$realtimeUsers ?></p>
+                    <small class="text-muted">storage/ga_credentials.json dosyası yüklendiğinde veriler güncellenir.</small>
                 </div>
             </div>
         </div>
@@ -74,10 +74,9 @@ $settings = $settings ?? [];
             <div class="card h-100">
                 <div class="card-body">
                     <h5>Ads Performans Özeti</h5>
-                    <p class="mb-1">Tahmini bütçe: 24.000 ₺</p>
-                    <p class="mb-1">Hedef ROI: %180</p>
-                    <p class="mb-1"><?= htmlspecialchars($settings['ads_summary'] ?? 'Ads özet notu eklenmedi.') ?></p>
-                    <small class="text-muted">Ayarlar sayfasından reklam özetlerini güncelleyebilirsiniz.</small>
+                    <p class="mb-1">Customer ID: <?= htmlspecialchars($settings['ads_customer_id'] ?? 'Tanımlanmadı') ?></p>
+                    <p class="mb-1">Durum: <?= $adsConnected ? 'Bağlı' : 'Bağlantı bekleniyor' ?></p>
+                    <small class="text-muted">storage/ads_credentials.json ile Google Ads API bağlanır.</small>
                 </div>
             </div>
         </div>

@@ -12,7 +12,8 @@ INSERT INTO settings (`key`, value) VALUES
 ('favicon', 'assets/favicon.svg'),
 ('goremedya_logo', 'assets/goremedya.svg'),
 ('ga_measurement_id', ''),
-('ads_summary', '');
+('ga_property_id', ''),
+('ads_customer_id', '');
 
 INSERT INTO sliders (title, subtitle, image_path, sort_order, is_active) VALUES
 ('Antalya Mermer Ustası', 'Profesyonel ölçü ve montaj', 'assets/placeholder.svg', 1, 1),

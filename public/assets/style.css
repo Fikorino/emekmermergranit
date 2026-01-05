@@ -66,6 +66,14 @@ html[data-theme="dark"] .logo-dark {
     display: inline-block;
 }
 
+body[data-theme="light"] .logo-light {
+    display: inline-block;
+}
+
+body[data-theme="dark"] .logo-dark {
+    display: inline-block;
+}
+
 .logo-mark {
     display: none;
 }

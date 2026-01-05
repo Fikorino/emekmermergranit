@@ -15,6 +15,7 @@ $goremedyaLogo = $settings['goremedya_logo'] ?? 'assets/goremedya.svg';
         (function() {
             var storedTheme = localStorage.getItem('theme') || 'light';
             document.documentElement.setAttribute('data-theme', storedTheme);
+            document.body && document.body.setAttribute('data-theme', storedTheme);
         })();
     </script>
 </head>

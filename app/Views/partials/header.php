@@ -36,6 +36,7 @@ $mapUrl = 'https://www.google.com/maps/search/?api=1&query=' . urlencode($addres
         (function() {
             var storedTheme = localStorage.getItem('theme') || 'light';
             document.documentElement.setAttribute('data-theme', storedTheme);
+            document.body && document.body.setAttribute('data-theme', storedTheme);
         })();
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
