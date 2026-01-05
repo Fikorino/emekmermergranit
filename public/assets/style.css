@@ -1,0 +1,13 @@
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+.carousel-item img {
+    max-height: 480px;
+    object-fit: cover;
+}
+
+.card img {
+    object-fit: cover;
+    height: 220px;
+}
