@@ -39,8 +39,6 @@ $whatsappLink = $whatsappNumber ? 'https://wa.me/' . $whatsappNumber : '#';
         <path d="M8.5 10.5c1.2 2.3 3.1 4.2 5.4 5.4l1.6-1a1 1 0 0 1 1.1 0l1.8 1a1 1 0 0 1 .4 1.2c-.4 1.2-1.7 2.2-3 2.2-1.7 0-4.8-1.1-7.2-3.5-2.4-2.4-3.5-5.5-3.5-7.2 0-1.3 1-2.6 2.2-3a1 1 0 0 1 1.2.4l1 1.8a1 1 0 0 1 0 1.1l-1 1.6z"></path>
     </svg>
 </a>
-<script>
-const storedTheme = localStorage.getItem('theme') || 'light';\nif (storedTheme) {\n    document.documentElement.setAttribute('data-theme', storedTheme);\n    document.body.setAttribute('data-theme', storedTheme);\n}\n\ndocument.querySelectorAll('[data-theme-toggle]').forEach((btn) => {\n    btn.addEventListener('click', () => {\n        const current = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';\n        document.documentElement.setAttribute('data-theme', current);\n        document.body.setAttribute('data-theme', current);\n        localStorage.setItem('theme', current);\n    });\n});\n</script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

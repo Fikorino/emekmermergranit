@@ -9,12 +9,7 @@ $whatsapp = $settings['whatsapp'] ?? $phone;
 $address = $settings['address'] ?? 'Antalya, Türkiye';
 $logoLight = $settings['logo_light'] ?? '';
 $logoDark = $settings['logo_dark'] ?? '';
-if ($logoLight === '' && $logoDark !== '') {
-    $logoLight = $logoDark;
-}
-if ($logoDark === '' && $logoLight !== '') {
-    $logoDark = $logoLight;
-}
+$logoPrimary = $logoDark ?: $logoLight;
 $favicon = $settings['favicon'] ?? 'assets/favicon.svg';
 $mapUrl = 'https://www.google.com/maps/search/?api=1&query=' . urlencode($address);
 ?>
@@ -32,13 +27,6 @@ $mapUrl = 'https://www.google.com/maps/search/?api=1&query=' . urlencode($addres
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="<?= htmlspecialchars($siteName) ?>">
     <link rel="icon" href="<?= asset($favicon) ?>" type="image/svg+xml">
-    <script>
-        (function() {
-            var storedTheme = localStorage.getItem('theme') || 'light';
-            document.documentElement.setAttribute('data-theme', storedTheme);
-            document.body && document.body.setAttribute('data-theme', storedTheme);
-        })();
-    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -49,9 +37,8 @@ $mapUrl = 'https://www.google.com/maps/search/?api=1&query=' . urlencode($addres
 <nav class="navbar navbar-expand-lg navbar-dark premium-nav">
     <div class="container">
         <a class="navbar-brand d-flex align-items-center gap-2" href="<?= base_url('') ?>">
-            <?php if ($logoLight || $logoDark) : ?>
-                <img class="logo logo-light" src="<?= asset($logoLight) ?>" alt="Logo açık" height="40">
-                <img class="logo logo-dark" src="<?= asset($logoDark) ?>" alt="Logo koyu" height="40">
+            <?php if ($logoPrimary) : ?>
+                <img class="logo" src="<?= asset($logoPrimary) ?>" alt="Logo" height="40">
             <?php else : ?>
                 <span class="logo-mark logo-fallback">EM</span>
             <?php endif; ?>
@@ -71,7 +58,6 @@ $mapUrl = 'https://www.google.com/maps/search/?api=1&query=' . urlencode($addres
             <div class="ms-lg-4">
                 <a class="btn btn-outline-light btn-sm premium-btn" href="<?= base_url('iletisim') ?>">Teklif Al</a>
             </div>
-            <button class="btn btn-sm btn-theme-toggle ms-lg-3" type="button" data-theme-toggle aria-label="Tema değiştir">🌓</button>
         </div>
     </div>
 </nav>

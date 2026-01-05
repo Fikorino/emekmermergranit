@@ -11,13 +11,6 @@ $goremedyaLogo = $settings['goremedya_logo'] ?? 'assets/goremedya.svg';
     <title>Admin Panel | Emek Mermer Antalya</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="<?= asset('assets/admin.css') ?>">
-    <script>
-        (function() {
-            var storedTheme = localStorage.getItem('theme') || 'light';
-            document.documentElement.setAttribute('data-theme', storedTheme);
-            document.body && document.body.setAttribute('data-theme', storedTheme);
-        })();
-    </script>
 </head>
 <body class="bg-light">
 <div class="admin-layout">
@@ -55,6 +48,5 @@ $goremedyaLogo = $settings['goremedya_logo'] ?? 'assets/goremedya.svg';
             <div class="admin-user">
                 <span><?= htmlspecialchars($admin['email'] ?? '') ?></span>
             </div>
-            <button class="btn btn-sm btn-theme-toggle" type="button" data-theme-toggle aria-label="Tema değiştir">🌓</button>
         </header>
         <main class="py-4">
