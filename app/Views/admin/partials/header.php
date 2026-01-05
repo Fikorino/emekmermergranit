@@ -13,7 +13,7 @@ $goremedyaLogo = $settings['goremedya_logo'] ?? 'assets/goremedya.svg';
     <link rel="stylesheet" href="<?= asset('assets/admin.css') ?>">
     <script>
         (function() {
-            var storedTheme = localStorage.getItem('theme') || 'dark';
+            var storedTheme = localStorage.getItem('theme') || 'light';
             document.documentElement.setAttribute('data-theme', storedTheme);
         })();
     </script>

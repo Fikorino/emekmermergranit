@@ -7,8 +7,14 @@ $siteName = $settings['site_name'] ?? 'Emek Mermer Antalya';
 $phone = $settings['phone'] ?? '+90 000 000 0000';
 $whatsapp = $settings['whatsapp'] ?? $phone;
 $address = $settings['address'] ?? 'Antalya, Türkiye';
-$logoLight = $settings['logo_light'] ?? 'assets/logo-light.svg';
-$logoDark = $settings['logo_dark'] ?? 'assets/logo-dark.svg';
+$logoLight = $settings['logo_light'] ?? '';
+$logoDark = $settings['logo_dark'] ?? '';
+if ($logoLight === '' && $logoDark !== '') {
+    $logoLight = $logoDark;
+}
+if ($logoDark === '' && $logoLight !== '') {
+    $logoDark = $logoLight;
+}
 $favicon = $settings['favicon'] ?? 'assets/favicon.svg';
 $mapUrl = 'https://www.google.com/maps/search/?api=1&query=' . urlencode($address);
 ?>
@@ -28,7 +34,7 @@ $mapUrl = 'https://www.google.com/maps/search/?api=1&query=' . urlencode($addres
     <link rel="icon" href="<?= asset($favicon) ?>" type="image/svg+xml">
     <script>
         (function() {
-            var storedTheme = localStorage.getItem('theme') || 'dark';
+            var storedTheme = localStorage.getItem('theme') || 'light';
             document.documentElement.setAttribute('data-theme', storedTheme);
         })();
     </script>
@@ -42,9 +48,12 @@ $mapUrl = 'https://www.google.com/maps/search/?api=1&query=' . urlencode($addres
 <nav class="navbar navbar-expand-lg navbar-dark premium-nav">
     <div class="container">
         <a class="navbar-brand d-flex align-items-center gap-2" href="<?= base_url('') ?>">
-            <img class="logo logo-light" src="<?= asset($logoLight) ?>" alt="Logo açık" height="40">
-            <img class="logo logo-dark" src="<?= asset($logoDark) ?>" alt="Logo koyu" height="40">
-            <span class="logo-mark">EM</span>
+            <?php if ($logoLight || $logoDark) : ?>
+                <img class="logo logo-light" src="<?= asset($logoLight) ?>" alt="Logo açık" height="40">
+                <img class="logo logo-dark" src="<?= asset($logoDark) ?>" alt="Logo koyu" height="40">
+            <?php else : ?>
+                <span class="logo-mark logo-fallback">EM</span>
+            <?php endif; ?>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
             <span class="navbar-toggler-icon"></span>

@@ -50,6 +50,7 @@ class AdminController
             'posts' => Post::all(),
             'faqs' => Faq::all(),
             'leads' => Lead::all(),
+            'settings' => Setting::all(),
         ]);
     }
 

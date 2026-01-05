@@ -70,6 +70,10 @@ html[data-theme="dark"] .logo-dark {
     display: none;
 }
 
+.logo-fallback {
+    display: inline-flex;
+}
+
 .premium-btn {
     border-radius: 999px;
 }

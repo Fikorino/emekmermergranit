@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="<?= asset('assets/admin.css') ?>">
     <script>
         (function() {
-            var storedTheme = localStorage.getItem('theme') || 'dark';
+            var storedTheme = localStorage.getItem('theme') || 'light';
             document.documentElement.setAttribute('data-theme', storedTheme);
         })();
     </script>
@@ -79,6 +79,6 @@
     </div>
 </div>
 <script>
-const storedTheme = localStorage.getItem('theme') || 'dark';\nif (storedTheme) {\n    document.documentElement.setAttribute('data-theme', storedTheme);\n}\n\ndocument.querySelectorAll('[data-theme-toggle]').forEach((btn) => {\n    btn.addEventListener('click', () => {\n        const current = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';\n        document.documentElement.setAttribute('data-theme', current);\n        localStorage.setItem('theme', current);\n    });\n});\n</script>
+const storedTheme = localStorage.getItem('theme') || 'light';\nif (storedTheme) {\n    document.documentElement.setAttribute('data-theme', storedTheme);\n}\n\ndocument.querySelectorAll('[data-theme-toggle]').forEach((btn) => {\n    btn.addEventListener('click', () => {\n        const current = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';\n        document.documentElement.setAttribute('data-theme', current);\n        localStorage.setItem('theme', current);\n    });\n});\n</script>
 </body>
 </html>
