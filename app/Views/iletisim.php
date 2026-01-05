@@ -1,3 +1,10 @@
+<?php
+$address = $settings['address'] ?? 'Antalya, Türkiye';
+$phone = $settings['phone'] ?? '+90 000 000 0000';
+$whatsapp = $settings['whatsapp'] ?? $phone;
+$email = $settings['email'] ?? 'info@emekmermerantalya.com';
+$mapUrl = 'https://www.google.com/maps/search/?api=1&query=' . urlencode($address);
+?>
 <?php require __DIR__ . '/partials/header.php'; ?>
 <section class="section-light">
     <div class="container">
@@ -36,9 +43,10 @@
             <div class="col-lg-6">
                 <div class="premium-card h-100">
                     <h5>İletişim Bilgileri</h5>
-                    <p>Adres: <?= htmlspecialchars($settings['address'] ?? 'Antalya, Türkiye') ?></p>
-                    <p>Telefon: <?= htmlspecialchars($settings['phone'] ?? '+90 000 000 0000') ?></p>
-                    <p>E-posta: <?= htmlspecialchars($settings['email'] ?? 'info@emekmermerantalya.com') ?></p>
+                    <p>Adres: <a class="link-contrast" href="<?= htmlspecialchars($mapUrl) ?>" target="_blank" rel="noopener"><?= htmlspecialchars($address) ?></a></p>
+                    <p>Telefon: <a class="link-contrast" href="tel:<?= htmlspecialchars($phone) ?>"><?= htmlspecialchars($phone) ?></a></p>
+                    <p>WhatsApp: <a class="link-contrast" href="https://wa.me/<?= htmlspecialchars(preg_replace('/\D+/', '', $whatsapp)) ?>" target="_blank" rel="noopener"><?= htmlspecialchars($whatsapp) ?></a></p>
+                    <p>E-posta: <a class="link-contrast" href="mailto:<?= htmlspecialchars($email) ?>"><?= htmlspecialchars($email) ?></a></p>
                     <hr>
                     <p>Showroom ziyaretleri ve numune incelemeleri için randevu oluşturabilirsiniz. VIP projeler için özel ekip planlaması yapılır.</p>
                 </div>

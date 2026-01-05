@@ -198,10 +198,18 @@ class AdminController
     public function settingsStore(): void
     {
         $this->requireAuth();
-        if (!empty($_FILES['logo']['name'])) {
-            $logoPath = $this->handleUpload('logo');
-            if ($logoPath !== '') {
-                Setting::updateSetting('logo_path', $logoPath);
+        $uploads = [
+            'logo_light' => 'logo_light',
+            'logo_dark' => 'logo_dark',
+            'favicon' => 'favicon',
+            'goremedya_logo' => 'goremedya_logo',
+        ];
+        foreach ($uploads as $field => $settingKey) {
+            if (!empty($_FILES[$field]['name'])) {
+                $uploadPath = $this->handleUpload($field);
+                if ($uploadPath !== '') {
+                    Setting::updateSetting($settingKey, $uploadPath);
+                }
             }
         }
         foreach ($_POST as $key => $value) {
@@ -221,7 +229,7 @@ class AdminController
             return '';
         }
 
-        $allowed = ['image/jpeg', 'image/png', 'image/webp'];
+        $allowed = ['image/jpeg', 'image/png', 'image/webp', 'image/svg+xml', 'image/x-icon', 'image/vnd.microsoft.icon'];
         $finfo = new finfo(FILEINFO_MIME_TYPE);
         $mime = $finfo->file($file['tmp_name']);
         if (!in_array($mime, $allowed, true)) {
@@ -232,7 +240,11 @@ class AdminController
             return '';
         }
 
-        $extension = pathinfo($file['name'], PATHINFO_EXTENSION);
+        $extension = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
+        $allowedExtensions = ['jpg', 'jpeg', 'png', 'webp', 'svg', 'ico'];
+        if (!in_array($extension, $allowedExtensions, true)) {
+            return '';
+        }
         $filename = uniqid('upload_', true) . '.' . $extension;
         $destination = __DIR__ . '/../../public/uploads/' . $filename;
         if (!move_uploaded_file($file['tmp_name'], $destination)) {

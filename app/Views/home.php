@@ -32,7 +32,7 @@
                         <div class="carousel-inner">
                             <?php foreach ($sliders as $index => $slider) : ?>
                                 <div class="carousel-item <?= $index === 0 ? 'active' : '' ?>">
-                                    <img src="<?= asset($slider['image_path']) ?>" class="d-block w-100" alt="<?= htmlspecialchars($slider['title']) ?>">
+                                    <img src="<?= asset($slider['image_path'] ?: 'assets/placeholder.svg') ?>" class="d-block w-100" alt="<?= htmlspecialchars($slider['title']) ?>">
                                     <div class="carousel-caption">
                                         <h5><?= htmlspecialchars($slider['title']) ?></h5>
                                         <p><?= htmlspecialchars($slider['subtitle']) ?></p>

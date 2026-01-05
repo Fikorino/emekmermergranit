@@ -1,7 +1,21 @@
+:root {
+    --admin-bg: #f4f5f7;
+    --admin-text: #0f172a;
+    --admin-card: #ffffff;
+    --admin-border: #e2e8f0;
+}
+
+html[data-theme="dark"] {
+    --admin-bg: #0b0f1a;
+    --admin-text: #e2e8f0;
+    --admin-card: #111827;
+    --admin-border: #1f2937;
+}
+
 .admin-layout {
     display: flex;
     min-height: 100vh;
-    background: #f4f5f7;
+    background: var(--admin-bg);
 }
 
 .admin-sidebar {
@@ -55,12 +69,12 @@
 }
 
 .admin-topbar {
-    background: #fff;
-    border-bottom: 1px solid #e2e8f0;
+    background: var(--admin-card);
+    border-bottom: 1px solid var(--admin-border);
     padding: 18px 24px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    gap: 16px;
 }
 
 .admin-user {
@@ -69,6 +83,35 @@
     padding: 8px 14px;
     border-radius: 999px;
     font-size: 0.85rem;
+}
+
+.admin-powered {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 0.75rem;
+    color: rgba(248, 250, 252, 0.7);
+}
+
+.admin-powered img {
+    display: block;
+}
+
+.btn-theme-toggle {
+    border-radius: 999px;
+    border: 1px solid rgba(15, 23, 42, 0.2);
+    background: transparent;
+}
+
+.admin-content .card {
+    background: var(--admin-card);
+    border-color: var(--admin-border);
+    color: var(--admin-text);
+}
+
+.admin-content .table {
+    color: var(--admin-text);
 }
 
 @media (max-width: 991px) {

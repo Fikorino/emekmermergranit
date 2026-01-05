@@ -1,5 +1,7 @@
 <?php
 $admin = $_SESSION['admin'] ?? null;
+$settings = $settings ?? Setting::all();
+$goremedyaLogo = $settings['goremedya_logo'] ?? 'assets/goremedya.svg';
 ?>
 <!doctype html>
 <html lang="tr">
@@ -9,6 +11,12 @@ $admin = $_SESSION['admin'] ?? null;
     <title>Admin Panel | Emek Mermer Antalya</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="<?= asset('assets/admin.css') ?>">
+    <script>
+        (function() {
+            var storedTheme = localStorage.getItem('theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', storedTheme);
+        })();
+    </script>
 </head>
 <body class="bg-light">
 <div class="admin-layout">
@@ -29,6 +37,12 @@ $admin = $_SESSION['admin'] ?? null;
                 <a href="<?= base_url('admin/settings') ?>">Ayarlar</a>
                 <a href="<?= base_url('admin/logout') ?>">Çıkış</a>
             </nav>
+            <div class="admin-powered">
+                <span>Powered by</span>
+                <a href="https://goremedya.com" target="_blank" rel="noopener">
+                    <img src="<?= asset($goremedyaLogo) ?>" alt="Göre Medya" height="26">
+                </a>
+            </div>
         <?php endif; ?>
     </aside>
     <div class="admin-content">
@@ -40,5 +54,6 @@ $admin = $_SESSION['admin'] ?? null;
             <div class="admin-user">
                 <span><?= htmlspecialchars($admin['email'] ?? '') ?></span>
             </div>
+            <button class="btn btn-sm btn-theme-toggle" type="button" data-theme-toggle aria-label="Tema değiştir">🌓</button>
         </header>
         <main class="py-4">

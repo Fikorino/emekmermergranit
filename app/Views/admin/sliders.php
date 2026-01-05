@@ -52,7 +52,7 @@
                     <tbody>
                         <?php foreach ($sliders as $slider) : ?>
                             <tr>
-                                <td><img src="<?= asset($slider['image_path']) ?>" width="120" alt=""></td>
+                                <td><img src="<?= asset($slider['image_path'] ?: 'assets/placeholder.svg') ?>" width="120" alt=""></td>
                                 <td><?= htmlspecialchars($slider['title']) ?></td>
                                 <td><?= htmlspecialchars((string)$slider['sort_order']) ?></td>
                                 <td>
