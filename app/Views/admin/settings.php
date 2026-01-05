@@ -3,8 +3,17 @@
     <h1 class="mb-4">Genel Ayarlar</h1>
     <div class="card">
         <div class="card-body">
-            <form method="post" action="<?= base_url('admin/settings') ?>">
+            <form method="post" action="<?= base_url('admin/settings') ?>" enctype="multipart/form-data">
                 <div class="row g-3">
+                    <div class="col-md-12">
+                        <label class="form-label">Logo</label>
+                        <input type="file" name="logo" class="form-control" accept="image/*">
+                        <?php if (!empty($settings['logo_path'])) : ?>
+                            <div class="mt-2">
+                                <img src="<?= asset($settings['logo_path']) ?>" alt="Logo" height="48">
+                            </div>
+                        <?php endif; ?>
+                    </div>
                     <div class="col-md-6">
                         <label class="form-label">Site Adı</label>
                         <input type="text" name="site_name" class="form-control" value="<?= htmlspecialchars($settings['site_name'] ?? '') ?>">

@@ -1,16 +1,18 @@
 <?php require __DIR__ . '/partials/header.php'; ?>
-<section class="py-5">
+<section class="section-light">
     <div class="container">
-        <h1 class="mb-4">Blog</h1>
+        <div class="section-heading">
+            <span>Blog</span>
+            <h1>Doğal taş dünyasından ilham</h1>
+            <p>Mermer, granit ve kuvars hakkında bakım ipuçları, trendler ve proje önerileri.</p>
+        </div>
         <div class="row g-4">
             <?php foreach ($posts as $post) : ?>
                 <div class="col-md-6">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title"><?= htmlspecialchars($post['title']) ?></h5>
-                            <p class="card-text"><?= htmlspecialchars($post['excerpt']) ?></p>
-                            <a href="<?= base_url('blog/' . $post['slug']) ?>" class="btn btn-outline-primary">Devamı</a>
-                        </div>
+                    <div class="premium-card h-100">
+                        <h5 class="card-title"><?= htmlspecialchars($post['title']) ?></h5>
+                        <p class="card-text"><?= htmlspecialchars($post['excerpt']) ?></p>
+                        <a href="<?= base_url('blog/' . $post['slug']) ?>" class="text-link">Devamını Oku</a>
                     </div>
                 </div>
             <?php endforeach; ?>

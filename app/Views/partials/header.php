@@ -1,11 +1,12 @@
 <?php
 $metaTitle = $meta['title'] ?? 'Emek Mermer Antalya';
 $metaDescription = $meta['description'] ?? 'Antalya mermer ve granit çözümleri.';
-$canonical = $meta['canonical'] ?? base_url(trim($_SERVER['REQUEST_URI'], '/'));
+$canonical = $meta['canonical'] ?? base_url(ltrim(CURRENT_PATH, '/'));
 $settings = $settings ?? [];
 $siteName = $settings['site_name'] ?? 'Emek Mermer Antalya';
 $phone = $settings['phone'] ?? '+90 000 000 0000';
 $address = $settings['address'] ?? 'Antalya, Türkiye';
+$logoPath = $settings['logo_path'] ?? '';
 ?>
 <!doctype html>
 <html lang="tr">
@@ -20,13 +21,23 @@ $address = $settings['address'] ?? 'Antalya, Türkiye';
     <meta property="og:url" content="<?= htmlspecialchars($canonical) ?>">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="<?= htmlspecialchars($siteName) ?>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="<?= asset('assets/style.css') ?>">
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark premium-nav">
     <div class="container">
-        <a class="navbar-brand" href="<?= base_url('') ?>"><?= htmlspecialchars($siteName) ?></a>
+        <a class="navbar-brand d-flex align-items-center gap-2" href="<?= base_url('') ?>">
+            <?php if ($logoPath) : ?>
+                <img src="<?= asset($logoPath) ?>" alt="Logo" height="40">
+            <?php else : ?>
+                <span class="logo-mark">EM</span>
+            <?php endif; ?>
+            <span class="brand-text"><?= htmlspecialchars($siteName) ?></span>
+        </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -39,6 +50,9 @@ $address = $settings['address'] ?? 'Antalya, Türkiye';
                 <li class="nav-item"><a class="nav-link" href="<?= base_url('hakkimizda') ?>">Hakkımızda</a></li>
                 <li class="nav-item"><a class="nav-link" href="<?= base_url('iletisim') ?>">İletişim</a></li>
             </ul>
+            <div class="ms-lg-4">
+                <a class="btn btn-outline-light btn-sm premium-btn" href="<?= base_url('iletisim') ?>">Teklif Al</a>
+            </div>
         </div>
     </div>
 </nav>

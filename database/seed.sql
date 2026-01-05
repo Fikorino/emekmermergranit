@@ -5,7 +5,8 @@ INSERT INTO settings (`key`, value) VALUES
 ('site_name', 'Emek Mermer Antalya'),
 ('phone', '+90 242 000 0000'),
 ('email', 'info@emekmermerantalya.com'),
-('address', 'Antalya, Türkiye');
+('address', 'Antalya, Türkiye'),
+('logo_path', 'assets/logo.svg');
 
 INSERT INTO sliders (title, subtitle, image_path, sort_order, is_active) VALUES
 ('Antalya Mermer Ustası', 'Profesyonel ölçü ve montaj', 'assets/placeholder.svg', 1, 1),

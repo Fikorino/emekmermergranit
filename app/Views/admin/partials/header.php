@@ -8,28 +8,37 @@ $admin = $_SESSION['admin'] ?? null;
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Admin Panel | Emek Mermer Antalya</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="<?= asset('assets/admin.css') ?>">
 </head>
 <body class="bg-light">
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container">
-        <a class="navbar-brand" href="<?= base_url('admin') ?>">Admin Panel</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#adminNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="adminNav">
-            <?php if ($admin) : ?>
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="<?= base_url('admin/sliders') ?>">Slider</a></li>
-                    <li class="nav-item"><a class="nav-link" href="<?= base_url('admin/categories') ?>">Kategoriler</a></li>
-                    <li class="nav-item"><a class="nav-link" href="<?= base_url('admin/products') ?>">Ürünler</a></li>
-                    <li class="nav-item"><a class="nav-link" href="<?= base_url('admin/posts') ?>">Blog</a></li>
-                    <li class="nav-item"><a class="nav-link" href="<?= base_url('admin/faqs') ?>">SSS</a></li>
-                    <li class="nav-item"><a class="nav-link" href="<?= base_url('admin/leads') ?>">Mesajlar</a></li>
-                    <li class="nav-item"><a class="nav-link" href="<?= base_url('admin/settings') ?>">Ayarlar</a></li>
-                    <li class="nav-item"><a class="nav-link" href="<?= base_url('admin/logout') ?>">Çıkış</a></li>
-                </ul>
-            <?php endif; ?>
+<div class="admin-layout">
+    <aside class="admin-sidebar">
+        <div class="admin-brand">
+            <a href="<?= base_url('admin') ?>">Emek Mermer</a>
+            <span>Yönetim Paneli</span>
         </div>
-    </div>
-</nav>
-<main class="py-4">
+        <?php if ($admin) : ?>
+            <nav class="admin-menu">
+                <a href="<?= base_url('admin') ?>">Genel Bakış</a>
+                <a href="<?= base_url('admin/sliders') ?>">Slider</a>
+                <a href="<?= base_url('admin/categories') ?>">Kategoriler</a>
+                <a href="<?= base_url('admin/products') ?>">Ürünler</a>
+                <a href="<?= base_url('admin/posts') ?>">Blog</a>
+                <a href="<?= base_url('admin/faqs') ?>">SSS</a>
+                <a href="<?= base_url('admin/leads') ?>">Mesajlar</a>
+                <a href="<?= base_url('admin/settings') ?>">Ayarlar</a>
+                <a href="<?= base_url('admin/logout') ?>">Çıkış</a>
+            </nav>
+        <?php endif; ?>
+    </aside>
+    <div class="admin-content">
+        <header class="admin-topbar">
+            <div>
+                <h6 class="mb-0">Hoş geldiniz, <?= htmlspecialchars($admin['name'] ?? 'Admin') ?></h6>
+                <small>Yönetim işlemlerini sol menüden yönetin.</small>
+            </div>
+            <div class="admin-user">
+                <span><?= htmlspecialchars($admin['email'] ?? '') ?></span>
+            </div>
+        </header>
+        <main class="py-4">

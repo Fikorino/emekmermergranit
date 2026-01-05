@@ -198,6 +198,12 @@ class AdminController
     public function settingsStore(): void
     {
         $this->requireAuth();
+        if (!empty($_FILES['logo']['name'])) {
+            $logoPath = $this->handleUpload('logo');
+            if ($logoPath !== '') {
+                Setting::updateSetting('logo_path', $logoPath);
+            }
+        }
         foreach ($_POST as $key => $value) {
             Setting::updateSetting($key, trim((string)$value));
         }

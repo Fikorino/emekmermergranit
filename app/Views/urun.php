@@ -1,15 +1,21 @@
 <?php require __DIR__ . '/partials/header.php'; ?>
-<section class="py-5">
+<section class="section-light">
     <div class="container">
-        <div class="row g-4">
-            <div class="col-md-6">
-                <img src="<?= asset($product['image_path'] ?: 'assets/placeholder.svg') ?>" class="img-fluid" alt="<?= htmlspecialchars($product['name']) ?>">
+        <div class="row g-5 align-items-center">
+            <div class="col-lg-6">
+                <img src="<?= asset($product['image_path'] ?: 'assets/placeholder.svg') ?>" class="img-fluid rounded-4 shadow" alt="<?= htmlspecialchars($product['name']) ?>">
             </div>
-            <div class="col-md-6">
+            <div class="col-lg-6">
+                <span class="product-tag"><?= htmlspecialchars($product['category_name'] ?? 'Koleksiyon') ?></span>
                 <h1><?= htmlspecialchars($product['name']) ?></h1>
                 <p class="text-muted">Kategori: <?= htmlspecialchars($product['category_name'] ?? 'Genel') ?></p>
                 <p><?= nl2br(htmlspecialchars($product['description'] ?? '')) ?></p>
-                <a class="btn btn-primary" href="<?= base_url('iletisim') ?>">Teklif Al</a>
+                <ul class="list-check">
+                    <li>Özel ölçü üretim ve montaj</li>
+                    <li>Yüksek dayanım ve leke koruması</li>
+                    <li>Uzman ekip ile zamanında teslim</li>
+                </ul>
+                <a class="btn btn-gold" href="<?= base_url('iletisim') ?>">Teklif Al</a>
             </div>
         </div>
     </div>
